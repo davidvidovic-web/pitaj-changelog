@@ -43,13 +43,13 @@ body {
 		height: 240px;
 		background: radial-gradient(
 			50% 50% at 50% 50%,
-			rgba(colors.color(orange, 500), 0.2) 0%,
-			rgba(colors.color(orange, 500), 0) 100%
+			rgba(0, 0, 0, 0.04) 0%,
+			rgba(0, 0, 0, 0) 100%
 		);
 		@media (prefers-color-scheme: dark) {
 			background: radial-gradient(
 				50% 50% at 50% 50%,
-				rgba(255, 255, 255, 0.06) 0%,
+				rgba(255, 255, 255, 0.04) 0%,
 				rgba(255, 255, 255, 0) 100%
 			);
 		}
@@ -57,22 +57,27 @@ body {
 }
 
 ::selection {
-	background: colors.color(orange, 200);
+	background: rgba(37, 99, 235, 0.15);
 	@media (prefers-color-scheme: dark) {
-		background: colors.color(orange, 600);
+		background: rgba(37, 99, 235, 0.35);
 	}
 }
 
 a,
 a:visited {
-	color: colors.color(orange, 600);
-	transition: 0.1s ease;
+	color: #2563eb;
+	text-decoration: none;
+	transition: 0.15s ease;
 	@media (prefers-color-scheme: dark) {
-		color: colors.color(orange, 300);
+		color: #60a5fa;
 	}
 
 	&:hover {
-		color: colors.color(orange, 500);
+		color: #1d4ed8;
+		text-decoration: underline;
+		@media (prefers-color-scheme: dark) {
+			color: #93c5fd;
+		}
 	}
 }
 
@@ -146,9 +151,9 @@ nav {
 				position: absolute;
 				left: -1em;
 				top: 0.63em;
-				width: 8px;
-				height: 8px;
-				background: linear-gradient(25deg, colors.color(purple, 500), colors.color(orange, 500));
+				width: 6px;
+				height: 6px;
+				background: #2563eb;
 				border-radius: 99px;
 			}
 		}
@@ -215,20 +220,35 @@ nav {
 }
 
 .version_number {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
 	font-family: type.$codeFont;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: -0.2px;
 	line-height: 1;
 	margin-bottom: 8px;
-	padding: 4px 12px;
-	color: colors.$white;
-	background: linear-gradient(
-		25deg,
-		colors.color(purple, 800),
-		colors.color(purple, 700),
-		color.mix(colors.color(purple, 500), colors.color(orange, 500)),
-		colors.color(orange, 500)
-	);
-	border-radius: 8px;
+	padding: 5px 12px;
+	color: #09090b;
+	background: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	border-radius: 9999px;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		border-radius: 99px;
+		background: #10b981;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		color: #f8fafc;
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(255, 255, 255, 0.15);
+	}
 }
 
 .date {

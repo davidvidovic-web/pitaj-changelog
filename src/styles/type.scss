@@ -1,8 +1,8 @@
 @use './colors.scss' as colors;
 
-$baseFont: 'Lato', sans-serif;
-$codeFont: 'Source Code Pro', monospace;
-$fontSizeSmall: 15px;
+$baseFont: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$codeFont: 'JetBrains Mono', 'Source Code Pro', monospace;
+$fontSizeSmall: 14px;
 
 body {
 	font-family: $baseFont;

@@ -1,0 +1,24 @@
+---
+title: 'Početak Beta Testiranja: RAG AI Agent, Baza Znanja i Chat Widget'
+date: '2026-10-05'
+versionNumber: 'v0.5-beta'
+description: 'Zvanični početak javnog beta testiranja platforme Pitaj.io sa naprednim RAG AI engine-om, ugradivim chat widgetom i višekorisničkim radnim prostorom.'
+---
+
+## Početak Beta Testiranja: RAG AI Agent, Baza Znanja i Chat Widget
+
+Sa ponosom najavljujemo početak javnog beta testiranja platforme **Pitaj.io** sa verzijom **v0.5-beta**! Platforma omogućava kompanijama da u nekoliko minuta kreiraju pametnog AI asistenta obučenog na sopstvenim podacima.
+
+### 🧠 RAG (Retrieval-Augmented Generation) Baza Znanja
+- **Vektorsko indeksiranje:** Korištenje napredne PostgreSQL baze sa `pgvector` ekstenzijom i OpenAI / DeepSeek modelima za precizno pretraživanje semantičkog konteksta.
+- **Višestruki izvori znanja:** Jednostavan uvoz PDF, Word i tekstualnih dokumenata, web stranica preko linkova i direktnih Q&A parova.
+- **Automatsko učenje:** Pametno dijeljenje dokumenata na semantičke cjeline (chunking) za tačne odgovore bez halucinacija.
+
+### 💬 Ugradivi Chat Widget
+- **Jednostavna instalacija:** Postavljanje widgeta na bilo koju web stranicu putem jednog HTML `<script>` taga.
+- **Vizuelno prilagođavanje:** Odabir primarnih boja, pozicija, početnih poruka i stila ikone balončića u dizajneru.
+- **Brz i lagan:** Izrađen u Preact biblioteci za minimalan uticaj na brzinu učitavanja sajta.
+
+### 🏢 Višekorisnički Radni Prostor & Uloge
+- **Organizacija tima:** Upravljanje radnim prostorom kompanije, dodjela uloga članovima tima (Owner, Admin, Member, Customer Support).
+- **Planovi pretplate:** Transparentno praćenje potrošnje poruka, broja dokumenata i zauzeća memorije.

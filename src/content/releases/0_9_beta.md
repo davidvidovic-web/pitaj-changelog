@@ -1,0 +1,34 @@
+---
+title: 'Univerzalni E-Commerce RAG, PWA Mobilni Suite i 37 Jezika'
+date: '2026-11-13'
+versionNumber: 'v0.9-beta'
+description: 'Predstavljamo univerzalni e-commerce sync, hibridnu vektorsku i leksičku pretragu (RRF), mobilni PWA dashboard, podršku za 37 jezika i Backstage autonomnog agenta.'
+---
+
+## Univerzalni E-Commerce RAG, PWA Mobilni Suite i 37 Jezika
+
+Dobrodošli u izdanje **v0.9-beta** platforme Pitaj.io! Ovo izdanje donosi najveće proširenje mogućnosti za online prodavnice, pametnu hibridnu pretragu artikala, kompletnu podršku za mobilne uređaje i višejezičnu podršku.
+
+### 🛍️ Univerzalni E-Commerce Live Sync & Hibridni RAG
+- **Automatska sinhronizacija kataloga:** Podrška za Shopify, WooCommerce i generičke eCommerce webhookove s automatskim generisanjem direktnih linkova za kupovinu i dodavanje u korpu (`/cart/...`).
+- **Hibridna pretraga (RRF algoritam):** Kombinacija semantičke vektorske pretrage (`pgvector`) i preciznog leksičkog indeksiranja alfanumeričkih šifri i modela (`DE110`, `BMP-265E`, `1-8DPS30`, `ME5`).
+- **Pametno formatiranje cijena i dostupnosti:** Web crawler automatski prepoznaje i razdvaja redovne cijene, akcijske popuste (`-20%`) i status zaliha (*Na skladištu* / *Nema na skladištu*).
+- **Artisan komanda:** Nova komanda `php artisan knowledge:reformat-prices` za naknadno procesiranje i obogaćivanje postojećih podataka u bazi znanja.
+
+### 📱 Puni PWA Suite za mobilne uređaje
+- **Instalacija na telefon:** Dashboard se sada može instalirati direktno na početni ekran mobitela kao PWA (Progressive Web App) uz offline keširanje i Service Worker v3.
+- **Mobilna navigacija:** Dodano prilagođeno mobilno zaglavlje i praktična navigacijska traka pri dnu ekrana (Bottom Bar).
+- **Master-Detail pregled razgovora:** Potpuno redizajniran ekran za pregled i vođenje razgovora na manjim ekranima.
+- **In-place Designer & Live Preview:** Prilagođen pregled dizajnera i chat widgeta za rad u pokretu.
+
+### 🌍 Lokalizacija na 37 svjetskih jezika
+- **Automatska detekcija jezika:** AI asistent u toku razgovora automatski prepoznaje jezik na kojem se posjetitelj obrati (svi evropski i vodeći svjetski jezici) i odgovara prirodno i gramatički tačno.
+- **Kontrola jezika u Designeru:** Mogućnost definisanja primarnog jezika i filtriranja liste podržanih jezika po agentu.
+
+### 🎨 Tamna tema i vizuelna usklađenost
+- **Live Dark Theme:** Widget u Designeru i live preview prozor sada trenutno primjenjuju tamnu temu pri promjeni prekidača.
+- **Usklađeni balončići:** Plutajući pokretač (launcher bubble) i prozor chata sada dijele identične postavke sjene i zaobljenosti.
+- **Uklanjanje zaostalog brendinga:** Zamijenjene sve privremene ikonice zvaničnim Pitaj.io logotipom.
+
+### 🤖 Backstage Agent
+- Autonomni interni asistent u dashboardu s kojim možete razgovarati o postavkama agenta, kreirati procedure, akcije i guardrailove.
