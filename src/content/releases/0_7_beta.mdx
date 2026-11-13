@@ -4,21 +4,25 @@ date: '2026-10-29'
 versionNumber: 'v0.7-beta'
 description: 'Lansirali smo globalni Cloudflare CDN za chat widget, pokrenuli novu platformu za dokumentaciju na docs.pitaj.io i implementirali server-side rješavanje tema.'
 ---
+import SectionHeader from '../../components/SectionHeader.astro';
 
 ## Cloudflare Edge CDN, Nova Dokumentacija i Server-side ThemeResolver
 
 Izdanje **v0.7-beta** fokusirano je na stabilnost infrastrukture, globalnu brzinu isporuke koda posjetiteljima i pokretanje novog dokumentacijskog portala.
 
-### ⚡ Globalni Chat Widget CDN (`cdn.pitaj.io`)
+<SectionHeader icon="cdn" title="Globalni Chat Widget CDN (cdn.pitaj.io)" />
+
 - **Nulta latencija:** Chat skripte (`loader.js` i `widget.js`) se sada isporučuju preko Cloudflare Workers i Pages globalne edge mreže.
 - **Automatski fallback:** U slučaju bilo kakvih mrežnih prekida na CDN-u, sistem automatski preusmjerava zahtjeve na primarni API server bez uticaja na posjetitelje.
 - **Optimizacija veličine paketa:** Smanjena veličina inicijalnog bundle-a za još brže učitavanje na sporijim mobilnim mrežama.
 
-### 📚 Nova Tehnička Dokumentacija (`docs.pitaj.io`)
+<SectionHeader icon="docs" title="Nova Tehnička Dokumentacija (docs.pitaj.io)" />
+
 - **Astro 5 + Starlight:** Pokrenut cjelovit dokumentacijski portal izrađen u modernom Astro okruženju.
-- **Dvojezični vodiči:** Kompletna uputstva za instalaciju, vodiči za integraciju sa različitim CMS sistemima (Shopify, WordPress, Webflow, custom HTML) i detaljna specifikacija API ruta.
+- **Dvojezični vodiči:** Kompletna uputstva za instalaciju, vodiči za integraciju sa različitim platformama (Shopify, WordPress, Webflow, custom HTML) i detaljna specifikacija API ruta.
 - **Pretraga u realnom vremenu:** Brzo pretraživanje tema i koda kroz ugrađeni indeks.
 
-### 🛠️ Infrastrukturne optimizacije
+<SectionHeader icon="infra" title="Infrastrukturne optimizacije" />
+
 - **Server-side ThemeResolver:** Pametno određivanje tema i prilagođavanja bez treperenja pri učitavanju (FOUC).
 - **Docker & WebSocket unapređenja:** Izjednačeno rutiranje za portove :80 i :8080 uz automatsko osvježavanje sesija na Laravel Reverb WebSocket serveru.

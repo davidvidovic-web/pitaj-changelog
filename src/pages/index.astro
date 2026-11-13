@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { ShieldCheck, Sparkles } from '@lucide/astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Layout from '../layouts/IndexLayout.astro';
 
@@ -9,7 +10,15 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
 
 <Layout>
 	<main>
-		<h1 class="page_title">Changelog</h1>
+		<div class="header-section">
+			<h1 class="page_title">Zabilješke o izdanjima</h1>
+			<p class="page_subtitle">Sve najnovije nadogradnje, poboljšanja i nove funkcije na Pitaj.io platformi.</p>
+			
+			<div class="privacy-banner">
+				<ShieldCheck size={18} class="privacy-icon" />
+				<span><strong>Napomena o privatnosti:</strong> Pitaj.io u changelogu objavljuje isključivo tehničke nadogradnje i nove mogućnosti platforme. Podaci naših korisnika, kompanija, klijenata i posjetilaca nikada se ne koriste niti objavljuju.</span>
+			</div>
+		</div>
 		<hr />
 		<ul class="posts" transition:name="post">
 			{posts.map((post) => (
@@ -32,3 +41,47 @@ posts.sort((a, b) => +b.data.date - +a.data.date);
 		</ul>
 	</main>
 </Layout>
+
+<style>
+	.header-section {
+		margin-top: 1.5em;
+	}
+	.page_title {
+		margin: 0 0 0.3em 0;
+		font-size: 2.4em;
+		letter-spacing: -0.8px;
+	}
+	.page_subtitle {
+		margin: 0 0 1.2em 0;
+		font-size: 16px;
+		color: #64748b;
+	}
+	.privacy-banner {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 10px 14px;
+		border-radius: 8px;
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		font-size: 13px;
+		line-height: 1.5;
+		color: #475569;
+		margin-bottom: 1.5em;
+	}
+	.privacy-icon {
+		flex-shrink: 0;
+		margin-top: 2px;
+		color: #10b981;
+	}
+	@media (prefers-color-scheme: dark) {
+		.page_subtitle {
+			color: #94a3b8;
+		}
+		.privacy-banner {
+			background: rgba(255, 255, 255, 0.04);
+			border-color: rgba(255, 255, 255, 0.08);
+			color: #94a3b8;
+		}
+	}
+</style>
