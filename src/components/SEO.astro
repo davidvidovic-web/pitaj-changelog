@@ -7,9 +7,9 @@ type Image = {
 };
 
 type SEOMetadata = {
-	name: string;
-	title: string;
-	description: string;
+	name?: string;
+	title?: string;
+	description?: string;
 	image?: Image | undefined;
 	canonicalURL?: URL | string | undefined;
 	locale?: string;
@@ -30,17 +30,25 @@ export type Props = SEOMetadata & {
 };
 
 const {
-	name,
+	name = 'Pitaj.io',
 	title,
-	description,
+	description = 'Sve najnovije nadogradnje, poboljšanja i nove mogućnosti na Pitaj.io platformi.',
 	image,
-	locale = 'en',
+	locale = 'bs_BA',
 	canonicalURL = new URL(Astro.url.pathname, Astro.site),
 } = Astro.props;
 
+// Cleanly format display title without repetitive suffixes
+const siteTitle = 'Pitaj.io Changelog';
+const displayTitle = !title || title === siteTitle || title === name
+	? `${siteTitle} · Zabilješke o izdanjima i novim funkcijama`
+	: title.includes(siteTitle)
+		? title
+		: `${title} · ${siteTitle}`;
+
 const og = {
-	name,
-	title,
+	name: siteTitle,
+	title: displayTitle,
 	description,
 	image,
 	locale,
@@ -49,30 +57,53 @@ const og = {
 } satisfies OpenGraph;
 
 const twitter = {
-	name,
+	name: siteTitle,
+	title: displayTitle,
+	description,
 	card: 'summary_large_image',
+	handle: '@pitaj_io',
 	...Astro.props.twitter,
 };
 
-function normalizeImageUrl(image: string | ImageMetadata) {
-	return typeof image === 'string' ? image : image.src;
+function resolveAbsoluteImageUrl(img?: Image | string | ImageMetadata): string | undefined {
+	if (!img) return undefined;
+	const raw = typeof img === 'object' && 'src' in img ? img.src : img;
+	const src = typeof raw === 'string' ? raw : (raw as ImageMetadata).src;
+	if (!src) return undefined;
+	if (src.startsWith('http://') || src.startsWith('https://')) {
+		return src;
+	}
+	const siteBase = Astro.site ?? new URL('https://changelog.pitaj.io');
+	return new URL(src, siteBase).toString();
 }
+
+const resolvedImageUrl = resolveAbsoluteImageUrl(image);
 ---
 
-<!-- Page Metadata -->
-<link rel="canonical" href={canonicalURL} />
+<!-- Primary Page Title & Metadata -->
+<title>{displayTitle}</title>
+<meta name="title" content={displayTitle} />
 <meta name="description" content={description} />
+<meta name="author" content="Pitaj.io" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#09090b" />
+<link rel="canonical" href={canonicalURL} />
 
-<!-- Open Graph Tags -->
-<meta property="og:title" content={og.title} />
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content={og.type} />
 <meta property="og:url" content={canonicalURL} />
-<meta property="og:locale" content={og.locale} />
+<meta property="og:title" content={displayTitle} />
 <meta property="og:description" content={og.description} />
 <meta property="og:site_name" content={og.name} />
-{og.image && <meta property="og:image" content={normalizeImageUrl(og.image.src)} />}
-{og.image && <meta property="og:image:alt" content={og.image.alt} />}
+<meta property="og:locale" content={og.locale} />
+{resolvedImageUrl && <meta property="og:image" content={resolvedImageUrl} />}
+{og.image?.alt && <meta property="og:image:alt" content={og.image.alt} />}
 
-<!-- Twitter Tags -->
+<!-- Twitter -->
 <meta name="twitter:card" content={twitter.card} />
-<meta name="twitter:site" content={twitter.handle} />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={displayTitle} />
+<meta name="twitter:description" content={twitter.description} />
+{resolvedImageUrl && <meta name="twitter:image" content={resolvedImageUrl} />}
+{og.image?.alt && <meta name="twitter:image:alt" content={og.image.alt} />}
+{twitter.handle && <meta name="twitter:site" content={twitter.handle} />}

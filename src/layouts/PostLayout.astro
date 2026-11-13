@@ -13,12 +13,13 @@ const { release } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="bs">
 	<head>
 		<BaseHead
 			title={release.data.title}
 			description={release.data.description}
 			image={release.data.image}
+			og={{ type: 'article' }}
 		/>
 	</head>
 	<body>

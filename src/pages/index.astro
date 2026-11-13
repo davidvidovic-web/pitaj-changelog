@@ -8,7 +8,10 @@ const posts = await getCollection('releases');
 posts.sort((a, b) => +b.data.date - +a.data.date || b.id.localeCompare(a.id, undefined, { numeric: true }));
 ---
 
-<Layout>
+<Layout
+	title="Pitaj.io Changelog · Zabilješke o izdanjima i novim funkcijama"
+	description="Sve najnovije nadogradnje, poboljšanja i nove mogućnosti na Pitaj.io platformi za kreiranje inteligentnih AI agenata."
+>
 	<main>
 		<div class="header-section">
 			<h1 class="page_title">Zabilješke o izdanjima</h1>
