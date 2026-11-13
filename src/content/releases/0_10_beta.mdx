@@ -1,0 +1,38 @@
+---
+title: 'Interaktivni Dinamički Widgeti, AI Builder i Analitika'
+date: '2026-11-13'
+versionNumber: 'v0.10-beta'
+description: 'Predstavljamo sigurno izvršavanje dinamičkih JSX widgeta u chat interfejsu, interaktivni AI Widget Builder s pregledom uživo, Google Tag Manager integraciju i unificiranu navigaciju.'
+---
+import SectionHeader from '../../components/SectionHeader.astro';
+
+## Interaktivni Dinamički Widgeti, AI Builder i Analitika
+
+Izdanje **v0.10-beta** donosi revoluciju u načinu na koji AI asistenti komuniciraju s korisnicima — uvođenjem potpuno interaktivnih dinamičkih widgeta unutar samog razgovora, AI alata za njihovu izradu i integracijom napredne analitike.
+
+<SectionHeader icon="widget" title="Interaktivni Dinamički JSX Widgeti u Chatu" />
+
+- **Siguran dinamički UI u razgovoru:** Chat widget sada podržava renderovanje prilagođenih interaktivnih JSX komponenti (`DynamicJsxRenderer`) koje AI asistent može dinamički kreirati i prikazati posjetitelju (kartice proizvoda, kalkulatori ponuda, forme za unos i brza dugmad).
+- **Sigurni Sandbox & Validator:** Ugrađen je robusni runtime validator i AST parser koji provjerava dozvoljene elemente, propove i strukturu prije prikazivanja, sprječavajući bilo kakav neautorizovan ili nesiguran kod.
+- **Dvosmjerna interaktivnost:** Korisnici mogu vršiti interakciju s widgetom (klik na akciju, odabir opcije, slanje odgovora), a widget automatski komunicira sa sesijom razgovora.
+
+<SectionHeader icon="bot" title="AI Widget Builder & Live Preview" />
+
+- **Kreiranje widgeta prirodnim jezikom:** Kroz novi AI Widget Builder možete opisati šta želite da widget radi i prikazuje, a AI generiše kompletan, vizuelno dotjeran JSX kod spreman za upotrebu.
+- **Live Preview u realnom vremenu:** Trenutan prikaz generisanog widgeta direktno unutar dashboarda uz verifikaciju ponašanja i izgleda na svijetloj i tamnoj temi prije objave.
+- **Redizajnirana kolekcija šablona:** Unaprijeđen pregled gotovih šablona widgeta i akcija s elegantnim vizuelnim placeholderima, brzim linkovima i tooltipovima za duže opise (`ClampedText`).
+
+<SectionHeader icon="analytics" title="Google Tag Manager (GTM) Integracija" />
+
+- **Jednostavno praćenje metrika:** Ugrađena podrška za Google Tag Manager na dashboardu putem environment konfiguracije (`NEXT_PUBLIC_GTM_ID`).
+- **Nenametljivo učitavanje:** Asinhrono pozivanje i optimizacija učitavanja skripte garantuju maksimalne Core Web Vitals performanse i brzo učitavanje stranica.
+
+<SectionHeader icon="docs" title="Unificirana navigacija i resursi ekosistema" />
+
+- **Uvezana dokumentacija i changelog:** Dodane direktne veze ka tehničkoj dokumentaciji (`docs.pitaj.io`) i zvaničnom changelogu (`changelog.pitaj.io`) u navigaciju dashboarda, korisničke menije, marketing web stranicu i waitlist.
+- **Centralizovan pregled verzija:** Korisnici i administratori u svakom trenutku mogu jednim klikom pregledati novosti i uputstva za rad s platformom.
+
+<SectionHeader icon="cdn" title="Sinhronizacija i optimizacija Widget CDN-a" />
+
+- **Ažurirani ugrađeni paketi:** Usklađeni i osvježeni produkcijski CDN paketi widgeta kroz sve povezane servise (`pitaj-api`, `pitaj-website`, `pitaj-chat-widget`).
+- **Dorađena tipizacija:** Kompletirana TypeScript podrška za postavke stilizovanja plutajućih balončića, sjena (`drop_shadow_enabled`) i tema.

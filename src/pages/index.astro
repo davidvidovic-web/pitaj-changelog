@@ -5,7 +5,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Layout from '../layouts/IndexLayout.astro';
 
 const posts = await getCollection('releases');
-posts.sort((a, b) => +b.data.date - +a.data.date);
+posts.sort((a, b) => +b.data.date - +a.data.date || b.id.localeCompare(a.id, undefined, { numeric: true }));
 ---
 
 <Layout>

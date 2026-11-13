@@ -19,7 +19,10 @@ import {
   ShieldCheck,
   CheckCircle2,
   Plug,
-  RefreshCw
+  RefreshCw,
+  Blocks,
+  Code,
+  ChartBar
 } from '@lucide/astro';
 
 interface Props {
@@ -49,6 +52,9 @@ const { icon, title } = Astro.props;
     {icon === 'star' && <Star size={17} />}
     {icon === 'brain' && <Brain size={17} />}
     {icon === 'building' && <Building2 size={17} />}
+    {icon === 'widget' && <Blocks size={17} />}
+    {icon === 'code' && <Code size={17} />}
+    {icon === 'analytics' && <ChartBar size={17} />}
     {!icon && <Sparkles size={17} />}
   </span>
   <h3 class="feature-title">{title}</h3>
