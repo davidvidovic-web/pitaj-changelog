@@ -1,90 +1,64 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { ShieldCheck, Sparkles } from '@lucide/astro';
+import { ArrowDown, ArrowUpRight, ShieldCheck } from '@lucide/astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Layout from '../layouts/IndexLayout.astro';
 
 const posts = await getCollection('releases');
 posts.sort((a, b) => +b.data.date - +a.data.date || b.id.localeCompare(a.id, undefined, { numeric: true }));
+const latest = posts[0];
 ---
 
 <Layout
 	title="Pitaj.io Changelog · Zabilješke o izdanjima i novim funkcijama"
 	description="Sve najnovije nadogradnje, poboljšanja i nove mogućnosti na Pitaj.io platformi za kreiranje inteligentnih AI agenata."
 >
-	<main>
-		<div class="header-section">
-			<h1 class="page_title">Zabilješke o izdanjima</h1>
-			<p class="page_subtitle">Sve najnovije nadogradnje, poboljšanja i nove funkcije na Pitaj.io platformi.</p>
-			
-			<div class="privacy-banner">
-				<ShieldCheck size={18} class="privacy-icon" />
-				<span><strong>Napomena o privatnosti:</strong> Pitaj.io u changelogu objavljuje isključivo tehničke nadogradnje i nove mogućnosti platforme. Podaci naših korisnika, kompanija, klijenata i posjetilaca nikada se ne koriste niti objavljuju.</span>
+	<main id="main-content">
+		<section class="intro" aria-labelledby="page-title">
+			<div class="intro-copy">
+				<p class="eyebrow"><span class="eyebrow-dot"></span> PITAJ.IO / NOVOSTI</p>
+				<h1 id="page-title">Zabilješke o izdanjima<span class="title-dot">.</span></h1>
+				<p class="intro-description">Nove mogućnosti, poboljšanja i sve što se mijenja na Pitaj.io platformi — na jednom mjestu.</p>
+				{latest && <a class="latest-link" href={`#release-${latest.id}`}>Pogledajte najnovije izdanje <ArrowDown size={15} aria-hidden="true" /></a>}
 			</div>
+			{latest && <div class="latest-card">
+				<span class="latest-label"><span class="latest-dot"></span> POSLJEDNJE IZDANJE</span>
+				<strong>{latest.data.versionNumber}</strong>
+				<FormattedDate date={latest.data.date} />
+				<a href={`/releases/${latest.id}`} aria-label={`Otvori izdanje ${latest.data.versionNumber}`}><ArrowUpRight size={17} aria-hidden="true" /></a>
+			</div>}
+		</section>
+
+		<div class="privacy-banner">
+			<ShieldCheck size={18} class="privacy-icon" aria-hidden="true" />
+			<span><strong>Privatnost na prvom mjestu.</strong> U zabilješkama dijelimo tehničke nadogradnje i nove mogućnosti platforme, bez podataka korisnika, kompanija, klijenata i posjetilaca.</span>
 		</div>
-		<hr />
-		<ul class="posts" transition:name="post">
-			{posts.map((post) => (
-				<li class="post">
-					<div class="version_wrapper">
-						<div class="version_info">
-							<a href={`/releases/${post.id}`}>
-								<div class="version_number">{post.data.versionNumber}</div>
-								<FormattedDate class="date" date={post.data.date} />
-							</a>
-						</div>
-					</div>
-					<div class="content">
-						{render(post).then(({ Content }) => (
-							<Content />
-						))}
-					</div>
-				</li>
-			))}
-		</ul>
+
+		<div class="release-layout">
+			<aside class="release-navigation" aria-label="Navigacija po izdanjima">
+				<div class="release-navigation-inner">
+					<p class="navigation-label">IZDANJA <span>{String(posts.length).padStart(2, '0')}</span></p>
+					<nav class="version-list" aria-label="Lista izdanja">
+						{posts.map((post, index) => <a href={`#release-${post.id}`} class:list={[{ 'latest-version': index === 0 }]}><span>{post.data.versionNumber}</span>{index === 0 && <span class="new-label">Najnovije</span>}</a>)}
+					</nav>
+				</div>
+			</aside>
+			<section class="release-feed" aria-label="Zabilješke o izdanjima">
+				<div class="feed-heading"><span>Hronologija</span><span>OD NAJNOVIJEG</span></div>
+				<ol class="posts">
+					{posts.map((post, index) => (
+						<li class="post" id={`release-${post.id}`}>
+							<article>
+								<div class="release-meta">
+									<div class="release-meta-left"><span class="version_number">{post.data.versionNumber}</span><FormattedDate class="date" date={post.data.date} />{index === 0 && <span class="release-latest">Najnovije</span>}</div>
+									<a class="release-link" href={`/releases/${post.id}`} aria-label={`Otvori izdanje ${post.data.versionNumber}`}>Detalji <ArrowUpRight size={15} aria-hidden="true" /></a>
+								</div>
+								<div class="content">{render(post).then(({ Content }) => <Content />)}</div>
+							</article>
+						</li>
+					))}
+				</ol>
+			</section>
+		</div>
 	</main>
 </Layout>
-
-<style>
-	.header-section {
-		margin-top: 1.5em;
-	}
-	.page_title {
-		margin: 0 0 0.3em 0;
-		font-size: 2.4em;
-		letter-spacing: -0.8px;
-	}
-	.page_subtitle {
-		margin: 0 0 1.2em 0;
-		font-size: 16px;
-		color: #64748b;
-	}
-	.privacy-banner {
-		display: flex;
-		align-items: flex-start;
-		gap: 10px;
-		padding: 10px 14px;
-		border-radius: 8px;
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		font-size: 13px;
-		line-height: 1.5;
-		color: #475569;
-		margin-bottom: 1.5em;
-	}
-	.privacy-icon {
-		flex-shrink: 0;
-		margin-top: 2px;
-		color: #10b981;
-	}
-	@media (prefers-color-scheme: dark) {
-		.page_subtitle {
-			color: #94a3b8;
-		}
-		.privacy-banner {
-			background: rgba(255, 255, 255, 0.04);
-			border-color: rgba(255, 255, 255, 0.08);
-			color: #94a3b8;
-		}
-	}
-</style>
