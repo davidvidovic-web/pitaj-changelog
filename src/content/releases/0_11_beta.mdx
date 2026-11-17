@@ -1,0 +1,59 @@
+---
+title: 'Katalog Proizvoda, Slider u Chatu i Preuzimanje Razgovora'
+date: '2026-11-17'
+versionNumber: 'v0.11-beta'
+description: 'Strukturirani katalog proizvoda sa slider-om u chatu, preuzimanje razgovora uživo, bolje pamćenje konteksta razgovora, pouzdaniji crawler za velike prodavnice i ispravke stabilnosti.'
+---
+import SectionHeader from '../../components/SectionHeader.astro';
+
+## Katalog Proizvoda, Slider u Chatu i Preuzimanje Razgovora
+
+Izdanje **v0.11-beta** povezuje chat s vašim proizvodima: kad posjetilac traži proizvode ili cijene, dobija slider sa slikama, cijenama i dostupnošću. Uz to donosi preuzimanje razgovora uživo i niz ispravki.
+
+<SectionHeader icon="ecommerce" title="Katalog Proizvoda" />
+
+- **Strukturirani katalog:** Proizvodi iz sinhronizacije (WooCommerce, Shopify) i sa vašeg sajta skupljaju se na jedno mjesto s nazivom, cijenom, popustom, dostupnošću, slikom i linkom. Novi pregled kataloga u dashboardu omogućava sakrivanje ili isticanje pojedinih proizvoda.
+- **Pretraga koja razumije upit:** Podržani su filteri poput „do 100 KM", „na stanju" i „najjeftiniji", šifre modela, dijakritici i pretraga po značenju.
+- **Prikaz cijena s oprezom:** Cijena koja nije potvrđena označena je diskretnom ikonom s objašnjenjem. Nepoznati podaci se nikad ne popunjavaju.
+- **Isti podaci za AI i slider:** AI odgovara na osnovu istih proizvoda koje posjetilac vidi u slideru, pa odgovor i kartice uvijek ostaju usklađeni.
+
+<SectionHeader icon="widget" title="Slider Proizvoda kao Widget" />
+
+- **Podešavanje u Widgetima:** Slider se uključuje u Podesi → Widgeti („Slider proizvoda iz kataloga"), po agentu. Možete birati naslov, tekst dugmeta i prikaz cijena.
+- **Slider u razgovoru:** Kartice sa slikom, cijenom, precrtanom redovnom cijenom, popustom, stanjem i dugmetom koje vodi na stranicu proizvoda.
+- **Bez dupliranja odgovora:** Kad je prikazano više proizvoda, AI ih ne nabraja ponovo u tekstu, nego daje kratak uvod i pitanje za sužavanje izbora.
+- **Ispravan prikaz u pohrani konverzacija:** Umjesto generičkog šablona, u dashboardu se vide proizvodi koje je posjetilac stvarno vidio.
+
+<SectionHeader icon="chat" title="Preuzimanje Razgovora uživo" />
+
+- **Direktan razgovor s posjetiocem:** Operater može preuzeti razgovor i pisati posjetiocu u realnom vremenu, a poruke se odmah prikazuju u widgetu.
+- **Čistiji dashboard:** Dugme „Preuzmi razgovor" zauzima minimalno prostora, a aktivni AI asistent je označen samo tačkicom na razgovoru.
+
+<SectionHeader icon="brain" title="Pamćenje Konteksta Razgovora" />
+
+- **AI vidi cijeli razgovor:** Model dobija povijest razgovora do ograničenja, pa više ne pita ponovo ono što je korisnik već odgovorio (npr. klik na „400V" ili površinu).
+- **Kratki odgovori se razumiju:** Poruke poput „400V" ili „do 50 m²" tretiraju se kao odgovor na prethodno pitanje.
+
+<SectionHeader icon="crawler" title="Pouzdaniji Crawler za Velike Prodavnice" />
+
+- **Neispravan sitemap:** Adrese bez domene u sitemapu (`http:///stranica`) se sada ispravljaju umjesto da se odbace.
+- **Proizvodi bez JSON-LD podataka:** Čitaju se i ugrađeni e-commerce podaci sa stranice (šifra, naziv, cijena, popust, kategorije, dostupnost) te varijante proizvoda sa cijenom „od".
+- **Veliki katalozi kroz više prolaza:** Svako pokretanje prvo uzima stranice koje još nisu naučene.
+- **Bez duplikata:** Proizvod koji dolazi iz sinhronizacije i sa sajta prikazuje se jednom.
+- **Brže snimanje sajta:** Odabir stotina stranica više ne uzrokuje isteknuće zahtjeva, uz ograničenje od 5000 stranica po sajtu.
+
+<SectionHeader icon="infra" title="Stabilnost i Sigurnost" />
+
+- **Greška „provjerite internet vezu":** Dugi odgovori modela više se ne prekidaju (produženi limiti trajanja zahtjeva).
+- **CORS greške pri snimanju sajta:** Riješen uzrok kod velikog broja odabranih stranica; PHP upozorenja više ne mogu pokvariti odgovor servera.
+- **Tačniji upiti:** Količina („preporuči 3-5 proizvoda") se više ne tumači kao ograničenje cijene.
+- **Sanitizacija sadržaja:** Prilagođeni HTML u widgetima i adrese iframe-ova se provjeravaju prije prikaza.
+
+<SectionHeader icon="code" title="Google Tag Manager i Widget" />
+
+- **Rad uz Google Tag Manager:** Skripta widgeta sada radi i kad je postavljena preko GTM-a (koji uklanja `data-` atribute); ID widgeta može se zadati u adresi skripte ili kroz `window.PitajIOConfig`.
+- **Jasna poruka bez ID-a:** Bez ID-a widget ispisuje upozorenje u konzoli umjesto da šalje pogrešne zahtjeve.
+
+<SectionHeader icon="analytics" title="Privatnost" />
+
+- **Uklonjen Vercel Analytics:** Dashboard više ne učitava Vercel Analytics.
