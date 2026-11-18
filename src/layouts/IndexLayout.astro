@@ -15,8 +15,8 @@ const { ...head } = Astro.props;
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Preskoči na sadržaj</a>
-		<Header />
+		<div class="page"><Header /></div>
 		<slot />
-		<Footer />
+		<div class="page"><Footer /></div>
 	</body>
 </html>

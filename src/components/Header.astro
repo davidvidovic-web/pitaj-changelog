@@ -2,18 +2,16 @@
 import '../styles/global.scss';
 ---
 
-<header>
-	<nav>
-		<h2 id="site_title">
-			<a href="/">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">
-					<rect width="28" height="28" rx="6" fill="#09090b" class="logo-bg"/>
-					<path fill="#fff" fill-rule="evenodd" d="M6.1 23V5H15.8 C19.4 5 21.6 7.2 21.6 10.6 C21.6 14 19.4 16.2 15.8 16.2 H11V23H6.1Z M11 9.1V12.2H15.4 C16.6 12.2 17.3 11.6 17.3 10.6 C17.3 9.6 16.6 9.1 15.4 9.1H11Z"/>
-				</svg>
-				<span class="brand-text">Pitaj<span class="brand-dot">.io</span></span>
-				<span class="badge-beta">Beta</span>
-			</a>
-		</h2>
+<header class="masthead">
+	<nav aria-label="Glavna navigacija">
+		<a class="brand" href="/" aria-label="Pitaj.io Novosti, početna">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="30" height="30" aria-hidden="true">
+				<rect width="28" height="28" rx="3" class="logo-bg" />
+				<path class="logo-p" fill-rule="evenodd" d="M6.1 23V5H15.8 C19.4 5 21.6 7.2 21.6 10.6 C21.6 14 19.4 16.2 15.8 16.2 H11V23H6.1Z M11 9.1V12.2H15.4 C16.6 12.2 17.3 11.6 17.3 10.6 C17.3 9.6 16.6 9.1 15.4 9.1H11Z" />
+			</svg>
+			<span class="brand-text">Pitaj<span class="brand-dot">.io</span></span>
+			<span class="brand-section">Novosti</span>
+		</a>
 		<div class="links">
 			<a href="https://pitaj.io" target="_blank" rel="noopener">Pitaj.io</a>
 			<a href="https://app.pitaj.io" target="_blank" rel="noopener">Dashboard</a>
@@ -23,41 +21,10 @@ import '../styles/global.scss';
 </header>
 
 <style>
-	.links a {
-		text-decoration: none;
-		font-size: 14px;
-		font-weight: 500;
-	}
-	.brand-text {
-		font-size: 18px;
-		font-weight: 700;
-		letter-spacing: -0.5px;
-		color: currentColor;
-	}
-	.brand-dot {
-		color: #2563eb;
-	}
-	.badge-beta {
-		display: inline-block;
-		margin-left: 6px;
-		font-size: 11px;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		padding: 2px 7px;
-		border-radius: 9999px;
-		background: #f1f5f9;
-		color: #475569;
-		border: 1px solid #e2e8f0;
-	}
-	@media (prefers-color-scheme: dark) {
-		.badge-beta {
-			background: #1e293b;
-			color: #94a3b8;
-			border-color: #334155;
-		}
-		.logo-bg {
-			fill: #18181b;
-		}
-	}
+	.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); line-height: 1; }
+	.logo-bg { fill: var(--ink); }
+	.logo-p { fill: var(--paper); }
+	.brand-text { font-weight: 900; font-size: 21px; letter-spacing: -0.02em; }
+	.brand-dot { color: var(--blue); }
+	.brand-section { margin-left: 4px; padding-left: 12px; border-left: 1px solid var(--hair); font-weight: 500; font-size: 15px; font-stretch: 85%; color: var(--muted); }
 </style>

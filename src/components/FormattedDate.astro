@@ -12,7 +12,7 @@ const { date, ...attrs } = Astro.props;
 	{date.toLocaleDateString('bs-BA', {
 		timeZone: 'UTC',
 		year: 'numeric',
-		month: 'short',
+		month: 'long',
 		day: 'numeric',
 	})}
 </time>

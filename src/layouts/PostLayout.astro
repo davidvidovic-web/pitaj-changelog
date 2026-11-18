@@ -1,28 +1,50 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { ArrowLeft } from '@lucide/astro';
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import Release from '../components/Release.astro';
 
-type Props = { release: CollectionEntry<'releases'> };
-const { release } = Astro.props;
+type Props = {
+	release: CollectionEntry<'releases'>;
+	newer?: CollectionEntry<'releases'>;
+	older?: CollectionEntry<'releases'>;
+	latest?: boolean;
+};
+const { release, newer, older, latest = false } = Astro.props;
 ---
 <!doctype html>
 <html lang="bs">
 	<head><BaseHead title={release.data.title} description={release.data.description} image={release.data.image} og={{ type: 'article' }} /></head>
 	<body>
 		<a class="skip-link" href="#main-content">Preskoči na sadržaj</a>
-		<Header />
-		<main id="main-content" class="detail-page">
-			<h1 class="sr-only">{release.data.title}</h1>
-			<a class="back-link" href="/"><ArrowLeft size={16} aria-hidden="true" /> Sva izdanja</a>
-			<article class="post single">
-				<div class="release-meta"><div class="release-meta-left"><span class="version_number">{release.data.versionNumber}</span><FormattedDate class="date" date={release.data.date} /></div></div>
-				<div class="content"><slot /></div>
-			</article>
-		</main>
-		<Footer />
+		<div class="page">
+			<Header />
+			<main id="main-content" class="detail">
+				<h1 class="sr-only">{release.data.title}</h1>
+				<a class="back" href="/"><ArrowLeft size={16} aria-hidden="true" /> Sva izdanja</a>
+				<Release version={release.data.versionNumber} date={release.data.date} latest={latest} flag={latest}>
+					<slot />
+				</Release>
+				{(newer || older) && (
+					<nav class="pager" aria-label="Susjedna izdanja">
+						{older ? (
+							<a class="prev" href={`/releases/${older.id}`} rel="prev">
+								<strong><span class="sr-only">Starije izdanje: </span><ArrowLeft size={16} aria-hidden="true" /> {older.data.versionNumber}</strong>
+								<span>{older.data.title}</span>
+							</a>
+						) : <span />}
+						{newer ? (
+							<a class="next" href={`/releases/${newer.id}`} rel="next">
+								<strong><span class="sr-only">Novije izdanje: </span>{newer.data.versionNumber} <ArrowRight size={16} aria-hidden="true" /></strong>
+								<span>{newer.data.title}</span>
+							</a>
+						) : <span />}
+					</nav>
+				)}
+			</main>
+			<Footer />
+		</div>
 	</body>
 </html>

@@ -1,0 +1,31 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import FormattedDate from './FormattedDate.astro';
+
+type Props = {
+	version: string;
+	date: Date;
+	latest?: boolean;
+	/** Zastavica "Novo" uz izdanje; na naslovnici je nosi kolona izdanja. */
+	flag?: boolean;
+	href?: string;
+	id?: string;
+};
+
+const { version, date, latest = false, flag = false, href, id } = Astro.props;
+// Redni broj izdanja (v0.11-beta → 11) je oznaka lista; puna verzija stoji uz njega kao tekst.
+const numeral = version.match(/^v?\d+\.(\d+)/)?.[1] ?? version;
+---
+
+<article class:list={['issue', { latest }]} id={id}>
+	<div class="issue-mark">
+		<p class="numeral" aria-hidden="true">{numeral}</p>
+		<div class="issue-meta">
+			<span class="version">{version}</span>
+			<FormattedDate date={date} />
+			{flag && <span class="flag">Novo</span>}
+			{href && <a class="open" href={href} aria-label={`Otvori izdanje ${version}`}>Otvori <ArrowUpRight size={14} aria-hidden="true" /></a>}
+		</div>
+	</div>
+	<div class="content"><slot /></div>
+</article>

@@ -31,66 +31,55 @@ interface Props {
 }
 
 const { icon, title } = Astro.props;
----
 
+// Oblik pločice je oznaka sama po sebi (krug za razgovor, kvadrat za ostalo); boja samo pojačava.
+const circle = ['chat', 'bot', 'omnichannel', 'tickets', 'brain'];
+const green = ['infra', 'privacy'];
+const ink = ['crawler', 'sync', 'cdn', 'code', 'docs', 'wordpress', 'building'];
+const shape = icon && circle.includes(icon) ? 'circle' : 'square';
+const tone = icon && green.includes(icon) ? 'green' : icon && ink.includes(icon) ? 'ink' : 'blue';
+---
 <div class="feature-heading">
-  <span class="icon-badge">
-    {icon === 'ecommerce' && <ShoppingBag size={17} />}
-    {icon === 'mobile' && <Smartphone size={17} />}
-    {icon === 'globe' && <Globe size={17} />}
-    {icon === 'palette' && <Palette size={17} />}
-    {icon === 'bot' && <Bot size={17} />}
-    {icon === 'crawler' && <Workflow size={17} />}
-    {icon === 'wordpress' && <Plug size={17} />}
-    {icon === 'chat' && <MessageSquare size={17} />}
-    {icon === 'sync' && <RefreshCw size={17} />}
-    {icon === 'omnichannel' && <Share2 size={17} />}
-    {icon === 'cdn' && <Zap size={17} />}
-    {icon === 'docs' && <BookOpen size={17} />}
-    {icon === 'infra' && <Server size={17} />}
-    {icon === 'tickets' && <Ticket size={17} />}
-    {icon === 'star' && <Star size={17} />}
-    {icon === 'brain' && <Brain size={17} />}
-    {icon === 'building' && <Building2 size={17} />}
-    {icon === 'widget' && <Blocks size={17} />}
-    {icon === 'code' && <Code size={17} />}
-    {icon === 'analytics' && <ChartBar size={17} />}
-    {!icon && <Sparkles size={17} />}
-  </span>
-  <h3 class="feature-title">{title}</h3>
+	<div class="tile-cell">
+		<span class="tile" data-shape={shape} data-tone={tone} aria-hidden="true">
+			{icon === 'ecommerce' && <ShoppingBag size={22} strokeWidth={2} />}
+			{icon === 'mobile' && <Smartphone size={22} strokeWidth={2} />}
+			{icon === 'globe' && <Globe size={22} strokeWidth={2} />}
+			{icon === 'palette' && <Palette size={22} strokeWidth={2} />}
+			{icon === 'bot' && <Bot size={22} strokeWidth={2} />}
+			{icon === 'crawler' && <Workflow size={22} strokeWidth={2} />}
+			{icon === 'wordpress' && <Plug size={22} strokeWidth={2} />}
+			{icon === 'chat' && <MessageSquare size={22} strokeWidth={2} />}
+			{icon === 'sync' && <RefreshCw size={22} strokeWidth={2} />}
+			{icon === 'omnichannel' && <Share2 size={22} strokeWidth={2} />}
+			{icon === 'cdn' && <Zap size={22} strokeWidth={2} />}
+			{icon === 'docs' && <BookOpen size={22} strokeWidth={2} />}
+			{icon === 'infra' && <Server size={22} strokeWidth={2} />}
+			{icon === 'tickets' && <Ticket size={22} strokeWidth={2} />}
+			{icon === 'star' && <Star size={22} strokeWidth={2} />}
+			{icon === 'brain' && <Brain size={22} strokeWidth={2} />}
+			{icon === 'building' && <Building2 size={22} strokeWidth={2} />}
+			{icon === 'widget' && <Blocks size={22} strokeWidth={2} />}
+			{icon === 'code' && <Code size={22} strokeWidth={2} />}
+			{icon === 'privacy' && <ShieldCheck size={22} strokeWidth={2} />}
+			{icon === 'analytics' && <ChartBar size={22} strokeWidth={2} />}
+			{!icon && <Sparkles size={22} strokeWidth={2} />}
+		</span>
+	</div>
+	<h3 class="feature-title">{title}</h3>
 </div>
 
 <style>
-  .feature-heading {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 1.7em 0 0.8em 0;
-  }
-  .icon-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 8px;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    color: #0f172a;
-    flex-shrink: 0;
-  }
-  .feature-title {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.3;
-  }
-  @media (prefers-color-scheme: dark) {
-    .icon-badge {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: #f8fafc;
-    }
-  }
+	.feature-heading { display: contents; }
+	.tile-cell { grid-column: 1; padding: 22px 0 28px; border-top: 1px solid var(--hair); }
+	.feature-title { grid-column: 2; margin: 0; padding: 22px 28px 28px 0; border-top: 1px solid var(--hair); color: var(--ink); font: 700 19px/1.25 var(--sans); letter-spacing: -0.01em; }
+	.tile { display: grid; place-items: center; width: 44px; height: 44px; color: var(--on-tile); }
+	.tile[data-shape='circle'] { border-radius: 50%; }
+	.tile[data-tone='blue'] { background: var(--blue); }
+	.tile[data-tone='ink'] { background: var(--ink); color: var(--paper); }
+	.tile[data-tone='green'] { background: var(--green); }
+	@media (max-width: 960px) {
+		.tile-cell { padding: 20px 0 12px; }
+		.feature-title { display: flex; align-items: center; min-height: 76px; padding: 20px 0 12px; }
+	}
 </style>

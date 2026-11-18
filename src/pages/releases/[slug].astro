@@ -4,18 +4,19 @@ import Layout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
 	const releases = await getCollection('releases');
+	releases.sort((a, b) => +b.data.date - +a.data.date || b.id.localeCompare(a.id, undefined, { numeric: true }));
 
-	return releases.map((release) => ({
+	return releases.map((release, index) => ({
 		params: { slug: release.id },
-		props: { release },
+		props: { release, newer: releases[index - 1], older: releases[index + 1], latest: index === 0 },
 	}));
 }
 
-const { release } = Astro.props;
+const { release, newer, older, latest } = Astro.props;
 
 const { Content } = await render(release);
 ---
 
-<Layout {release}>
+<Layout {release} {newer} {older} {latest}>
 	<Content />
 </Layout>

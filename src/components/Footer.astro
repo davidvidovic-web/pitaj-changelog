@@ -2,37 +2,14 @@
 import '../styles/global.scss';
 ---
 
-<footer>
-	<div class="footer_left">
-		<p class="copyright">© 2026 Pitaj.io — Sva prava zadržana.</p>
-		<p class="privacy_note">Korisnički podaci su strogo povjerljivi i nikada se ne koriste u javnim zabilješkama izdanja.</p>
+<footer class="colophon">
+	<div>
+		<p>© 2026 Pitaj.io. Sva prava zadržana.</p>
+		<p class="note">Korisnički podaci su strogo povjerljivi i nikada se ne koriste u javnim zabilješkama izdanja.</p>
 	</div>
-	<div class="footer_links">
+	<div class="links">
 		<a href="https://pitaj.io" target="_blank" rel="noopener">Pitaj.io</a>
 		<a href="https://app.pitaj.io" target="_blank" rel="noopener">Dashboard</a>
 		<a href="https://docs.pitaj.io" target="_blank" rel="noopener">Dokumentacija</a>
 	</div>
 </footer>
-
-<style>
-	.footer_left {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-	}
-	.copyright {
-		margin: 0;
-		font-size: 13px;
-		font-weight: 500;
-	}
-	.privacy_note {
-		margin: 0;
-		font-size: 11px;
-		color: #94a3b8;
-	}
-	@media (prefers-color-scheme: dark) {
-		.privacy_note {
-			color: #64748b;
-		}
-	}
-</style>
