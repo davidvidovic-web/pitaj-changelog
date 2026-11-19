@@ -2,7 +2,7 @@
 title: 'Widgeti sa Stvarnim Podacima, Status Narudžbe Uživo i Bolji Mobilni Prikaz'
 date: '2026-11-19'
 versionNumber: 'v0.12-beta'
-description: 'Widgeti u chatu prikazuju samo stvarne podatke: katalog, narudžbe uživo, tikete i vaše unose. Posjetilac više ne vidi primjer-podatke. Uz to popravljen mobilni prikaz dashboarda i razgovora.'
+description: 'Widgeti u chatu prikazuju samo stvarne podatke: katalog, narudžbe uživo, tikete i vaše unose. Pozornica sada čita vaše podatke, crta grafikone i mapu i mijenja postavke uz potvrdu i vraćanje. Uz to popravljen mobilni prikaz dashboarda i razgovora.'
 ---
 import SectionHeader from '../../components/SectionHeader.astro';
 
@@ -43,3 +43,15 @@ Izdanje **v0.12-beta** donosi jednostavno pravilo: widget u razgovoru prikazuje 
 - **Razgovori na mobitelu:** Lista razgovora se sada vidi, „Nazad” radi, a polje za odgovor ostaje na dnu ekrana.
 - **Donja traka i zaglavlja:** Donja traka poštuje sigurnu zonu telefona, a dugmad u zaglavljima stranica se lome umjesto da šire stranicu.
 - **Greška pri učitavanju poruka:** Obrisan razgovor više ne prikazuje poruku o grešci.
+
+<SectionHeader icon="bot" title="Pozornica: Čita, Prikazuje i Mijenja" />
+
+- **Alati umjesto pogađanja:** Pozornica sada poziva stvarne alate. Analitiku, razgovore, bazu znanja, potrošnju, kanale, tikete i isporuke čita iz vaših podataka, pa više ne izmišlja stanje.
+- **Grafikoni, mapa i pregledi u razgovoru:** Trend razgovora, kanali, zadovoljstvo, najčešća pitanja i mapa država prikazuju se kao interaktivni prikazi. Novi ili izmijenjeni widgeti, akcije i procedure vide se renderovani kao kod posjetioca.
+- **Mapa u analitici:** Pri otvaranju se približava području odakle dolazi većina razgovora, umjesto da bude potpuno udaljena. „Resetuj" vraća na to područje.
+- **Potvrda i vraćanje:** Brisanje i izmjena instrukcija čekaju vašu potvrdu (instrukcije s prikazom razlike). Ostale izmjene imaju dugme „Vrati"; vraćanje se odbija ako ste isti podatak u međuvremenu ručno promijenili.
+- **Baza znanja iz razgovora:** Dodajte tekst, web stranicu ili QA par, izmijenite ih ili obrišite uz potvrdu. Kartica baze znanja ima dugmad za dodavanje i brisanje. Brisanje web stranica i dokumenata se ne može vratiti, što je izričito naznačeno.
+- **Instrukcije agenta:** Pozornica predlaže novu verziju sistemskih instrukcija, a vi potvrđujete nakon pregleda razlike.
+- **Akcije, procedure i widgeti kao na stranicama:** Pozornica koristi iste provjere kao dashboard. Ranije akcije i procedure koje je napravila nisu se prepoznavale u razgovoru jer im okidač nije bio indeksiran; sada se indeksira. Aktivna akcija mora imati cilj, a novi widgeti se mogu generisati istim AI graditeljem.
+- **Sigurnost:** Pozornica je dostupna samo vlasniku i administratoru. Sadržaj razgovora i dokumenata tretira kao podatke, ne kao upute, a kontakt podaci posjetilaca se ne prosljeđuju modelu. Najviše 8 izmjena po poruci, svaka se bilježi.
+- **Ispravke:** Poruke članova više ne dobijaju lažno „Uspješno ažurirano", dodavanje QA para iz Pozornice više ne puca, a riječi poput „redoslijed" ili „prozor" više ne mijenjaju boju widgeta.
