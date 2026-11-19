@@ -1,0 +1,45 @@
+---
+title: 'Widgeti sa Stvarnim Podacima, Status Narudžbe Uživo i Bolji Mobilni Prikaz'
+date: '2026-11-19'
+versionNumber: 'v0.12-beta'
+description: 'Widgeti u chatu prikazuju samo stvarne podatke: katalog, narudžbe uživo, tikete i vaše unose. Posjetilac više ne vidi primjer-podatke. Uz to popravljen mobilni prikaz dashboarda i razgovora.'
+---
+import SectionHeader from '../../components/SectionHeader.astro';
+
+## Widgeti sa Stvarnim Podacima, Status Narudžbe Uživo i Bolji Mobilni Prikaz
+
+Izdanje **v0.12-beta** donosi jednostavno pravilo: widget u razgovoru prikazuje samo stvarne podatke. Ako izvora nema, ne prikazuje se ništa izmišljeno.
+
+<SectionHeader icon="widget" title="Bez Primjer-Podataka" />
+
+- **Zaštita:** Widget koji još sadrži primjer iz šablona posjetioci ne vide. U listi widgeta stoji oznaka „Primjer-podaci”, a pri snimanju dobijate upozorenje.
+- **Čistija galerija:** Uklonjeni su šabloni bez stvarnog izvora podataka (pretplata, potrošnja, praćenje leta, vrijeme, pristanak za obavijesti). Svaki šablon ima oznaku izvora.
+
+<SectionHeader icon="ecommerce" title="Widgeti iz Kataloga" />
+
+- **Cjenovnik, kartica proizvoda i poređenje:** Pored slidera, katalog sada pokreće cjenovnik po kategoriji, karticu jednog proizvoda i poređenje 2 do 3 proizvoda.
+- **Usluge nisu proizvodi:** U Katalogu možete označiti stavku kao uslugu. Takva se ne nudi u slideru, kartici i poređenju; cjenovnik može prikazati proizvode, usluge ili sve.
+- **Pouzdanije dugme „Kupi”:** Link za dodavanje u korpu više ne pogađa pogrešnu varijantu: za proizvode s varijantama i rasprodane proizvode vodi samo stranica proizvoda.
+
+<SectionHeader icon="chat" title="Status Narudžbe Uživo" />
+
+- **Bez kopiranja narudžbi:** WooCommerce plugin (1.7.0) i Shopify aplikacija odgovaraju na upit o narudžbi uživo, uz broj i email. Pitaj.io ih ne čuva.
+- **Vlastite trgovine:** novi endpoint `POST /api/ecommerce/order-sync` za trgovine bez plugina.
+- **Stavke i praćenje:** Status prikazuje stavke, ukupan iznos i praćenje pošiljke.
+- **Čišćenje:** Ranije sinhronizirane narudžbe (i njihovi isječci u bazi znanja) mogu se obrisati za povezane trgovine komandom `orders:prune-synced`.
+
+<SectionHeader icon="chat" title="Status Zahtjeva i Prirodan Nastavak Razgovora" />
+
+- **Status zahtjeva:** Posjetilac vidi svoje tikete bez unosa, ili tiket po broju i emailu.
+- **Nastavak:** Kad widget traži broj narudžbe, tiketa ili email, dovoljan je odgovor samo s tim podatkom.
+
+<SectionHeader icon="widget" title="Forme i Vaši Popisi" />
+
+- **Zahtjev, ne potvrda:** Kontakt, demo i upit za smještaj uvijek kažu da je zahtjev zaprimljen, nikad da je nešto rezervisano.
+- **Lokacije, termini, tim:** Popise unosite sami, uz prijedlog iz baze znanja koji potvrđujete stavku po stavku.
+
+<SectionHeader icon="mobile" title="Mobilni Prikaz" />
+
+- **Razgovori na mobitelu:** Lista razgovora se sada vidi, „Nazad” radi, a polje za odgovor ostaje na dnu ekrana.
+- **Donja traka i zaglavlja:** Donja traka poštuje sigurnu zonu telefona, a dugmad u zaglavljima stranica se lome umjesto da šire stranicu.
+- **Greška pri učitavanju poruka:** Obrisan razgovor više ne prikazuje poruku o grešci.
