@@ -23,10 +23,9 @@ Izdanje **v0.12-beta** donosi jednostavno pravilo: widget u razgovoru prikazuje 
 
 <SectionHeader icon="chat" title="Status Narudžbe Uživo" />
 
-- **Bez kopiranja narudžbi:** WooCommerce plugin (1.7.0) i Shopify aplikacija odgovaraju na upit o narudžbi uživo, uz broj i email. Pitaj.io ih ne čuva.
+- **Bez kopiranja narudžbi:** WooCommerce plugin (1.7.0) odgovara na upit o narudžbi uživo, uz broj i email. Shopify aplikacija je u pripremi.
 - **Vlastite trgovine:** novi endpoint `POST /api/ecommerce/order-sync` za trgovine bez plugina.
 - **Stavke i praćenje:** Status prikazuje stavke, ukupan iznos i praćenje pošiljke.
-- **Čišćenje:** Ranije sinhronizirane narudžbe (i njihovi isječci u bazi znanja) mogu se obrisati za povezane trgovine komandom `orders:prune-synced`.
 
 <SectionHeader icon="chat" title="Status Zahtjeva i Prirodan Nastavak Razgovora" />
 
@@ -53,5 +52,5 @@ Izdanje **v0.12-beta** donosi jednostavno pravilo: widget u razgovoru prikazuje 
 - **Baza znanja iz razgovora:** Dodajte tekst, web stranicu ili QA par, izmijenite ih ili obrišite uz potvrdu. Kartica baze znanja ima dugmad za dodavanje i brisanje. Brisanje web stranica i dokumenata se ne može vratiti, što je izričito naznačeno.
 - **Instrukcije agenta:** Pozornica predlaže novu verziju sistemskih instrukcija, a vi potvrđujete nakon pregleda razlike.
 - **Akcije, procedure i widgeti kao na stranicama:** Pozornica koristi iste provjere kao dashboard. Ranije akcije i procedure koje je napravila nisu se prepoznavale u razgovoru jer im okidač nije bio indeksiran; sada se indeksira. Aktivna akcija mora imati cilj, a novi widgeti se mogu generisati istim AI graditeljem.
-- **Sigurnost:** Pozornica je dostupna samo vlasniku i administratoru. Sadržaj razgovora i dokumenata tretira kao podatke, ne kao upute, a kontakt podaci posjetilaca se ne prosljeđuju modelu. Najviše 8 izmjena po poruci, svaka se bilježi.
+- **Pristup:** Pozornica je dostupna vlasniku i administratoru.
 - **Ispravke:** Poruke članova više ne dobijaju lažno „Uspješno ažurirano", dodavanje QA para iz Pozornice više ne puca, a riječi poput „redoslijed" ili „prozor" više ne mijenjaju boju widgeta.
